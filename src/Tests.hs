@@ -1,9 +1,6 @@
 import Collatz
   ( collatzECF,
     collatzECFtoN,
-    collatzECFtoRECF,
-    collatzRECF,
-    collatzRECFtoN,
     collatzReducedSequence,
     collatzSequence,
   )

@@ -56,7 +56,12 @@ collatzRECFtoN ecf = _collatzRECFtoN (tail (reverse ecf)) (2 ^ last ecf)
 
 -- | Compute a number from it's ECF. Converts ECF to RECF, and then finds the number.
 collatzECFtoN :: [Int] -> Int
-collatzECFtoN ecf = collatzRECFtoN (collatzECFtoRECF ecf)
+collatzECFtoN ecf = _collatzECFtoN (reverse (tail ecf)) 1
+where
+  _collatzECFtoN  :: [Int] -> Int -> Int
+  _collatzECFtoN [] ans = ans
+  _collatzECFtoN (ecf n = 
+    -- todo todo todo
 
 -- | Convert the ECF to RECF
 collatzECFtoRECF :: [Int] -> [Int]
