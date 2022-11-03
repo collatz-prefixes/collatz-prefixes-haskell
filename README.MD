@@ -2,4 +2,4 @@
 
 Haskell installed with [GHCup](https://www.haskell.org/ghcup/)
 
-Usage: `make` to create the binary. `make test` to create test binary.
+Usage: `make` to create the binary. `make tests` to create test binary and `make validate` to run them afterwards.

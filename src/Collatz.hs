@@ -33,42 +33,14 @@ collatzECF n = _collatzECF n 0
       | n > 1 && odd n = t : _collatzECF (3 * n + 1) t
       | otherwise = [t]
 
--- | Find the RECF (Reduced ECF) of a number.
-collatzRECF :: Int -> [Int]
-collatzRECF n = _collatzRECF n 0
-  where
-    _collatzRECF :: Int -> Int -> [Int]
-    _collatzRECF n t
-      | n > 1 && even n = _collatzRECF (consumeTwos n) (numTwos n)
-      | n > 1 && odd n = t : _collatzRECF (3 * n + 1) 0
-      | otherwise = [t]
-
--- | Compute a number from it's RECF.
-collatzRECFtoN :: [Int] -> Int
-collatzRECFtoN ecf = _collatzRECFtoN (tail (reverse ecf)) (2 ^ last ecf)
-  where
-    _collatzRECFtoN :: [Int] -> Int -> Int
-    _collatzRECFtoN [] n = n
-    _collatzRECFtoN ecf n =
-      _collatzRECFtoN
-        (tail ecf)
-        (div (n - 1) 3 * (2 ^ head ecf))
-
 -- | Compute a number from it's ECF. Converts ECF to RECF, and then finds the number.
 collatzECFtoN :: [Int] -> Int
-collatzECFtoN ecf = _collatzECFtoN (reverse (tail ecf)) 1
-where
-  _collatzECFtoN  :: [Int] -> Int -> Int
-  _collatzECFtoN [] ans = ans
-  _collatzECFtoN (ecf n = 
-    -- todo todo todo
-
--- | Convert the ECF to RECF
-collatzECFtoRECF :: [Int] -> [Int]
-collatzECFtoRECF ecf = head ecf : _collatzECFtoRECF (tail ecf) (head ecf)
+collatzECFtoN ecf = _collatzECFtoN (reverse ecf) 1
   where
-    _collatzECFtoRECF :: [Int] -> Int -> [Int]
-    _collatzECFtoRECF [] last = []
-    _collatzECFtoRECF ecf last = (head ecf - last) : _collatzECFtoRECF (tail ecf) (head ecf)
-
--- TODO: ICF implement
+    _collatzECFtoN :: [Int] -> Int -> Int
+    _collatzECFtoN [] _ = 1
+    _collatzECFtoN [last] ans = ans * 2 ^ last
+    _collatzECFtoN (last : ecf) ans =
+      _collatzECFtoN
+        ecf
+        (div (ans * 2 ^ (last - head ecf) - 1) 3)

@@ -53,12 +53,7 @@ testsCollatz n = do
   putStr "ECF: "
   print (collatzECF n)
 
-  putStr "RECF: "
-  print (collatzRECF n)
-
   putStr (assert (n == collatzECFtoN (collatzECF n)) "")
-  putStr (assert (n == collatzRECFtoN (collatzRECF n)) "")
-  putStr (assert (collatzRECF n == collatzECFtoRECF (collatzECF n)) "")
 
 -- | Test functions from Prefix.hs
 testsPrefix :: Int -> Int -> IO ()
@@ -182,4 +177,4 @@ main =
     testsPIPTree n
     testIterative n
 
-    putStrLn "\nAll tests pass baby :)"
+    putStrLn "\nAll tests pass, baby :)"
