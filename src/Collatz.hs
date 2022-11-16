@@ -33,7 +33,7 @@ collatzECF n = _collatzECF n 0
       | n > 1 && odd n = t : _collatzECF (3 * n + 1) t
       | otherwise = [t]
 
--- | Compute a number from it's ECF. Converts ECF to RECF, and then finds the number.
+-- | Compute a number from it's ECF.
 collatzECFtoN :: [Int] -> Int
 collatzECFtoN ecf = _collatzECFtoN (reverse ecf) 1
   where
